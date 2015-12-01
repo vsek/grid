@@ -1,2 +1,0 @@
-# grid
-Datagrid CMS systému

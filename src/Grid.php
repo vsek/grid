@@ -6,6 +6,7 @@ namespace App\Grid;
  * Description of Grid
  *
  * @author Vsek
+ * prvni verze
  */
 class Grid extends \Nette\Application\UI\Control{
     

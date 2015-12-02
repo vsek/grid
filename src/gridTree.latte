@@ -1,0 +1,47 @@
+<table class="grid">
+    <tr>
+        {foreach $columns as $column}
+            <th>
+                <a n:href="setOrder, $column->getColumn()" n:tag-if="$column->getOrdering()">{$column->getName()}</a>
+                <img n:if="$order == $column->getColumn() && $column->getOrdering()" src="/images/admin/table-sort-{$orderDir|lower}.png" />
+            </th>
+            <th class="ordering" n:if="$iterator->isFirst() && !is_null($ordering)">{_'admin.grid.changeOrdering'}</th>
+        {/foreach}
+        <th n:if="count($menu) > 0"></th>
+    </tr>
+    {? $level = 0}
+    {block #inside}
+        {foreach $model as $row}
+            <tr n:class="$iterator->isLast() ? last">
+                {? $isFirst = $iterator->isFirst()}
+                {? $isLast = $iterator->isLast()}
+                {foreach $columns as $column}
+                    <td n:class="$iterator->isFirst() ? first">
+                        <span n:if="$iterator->isFirst()" style="padding-left: {? echo($level*10)}px"></span>
+                        {$column->output($row)}
+                    </td>
+                    <td n:if="$iterator->isFirst() && !is_null($ordering)" class="ordering">
+                        <a n:if="!$isLast" href="{$control->getParent()->link($ordering, array('id' => $row['id'], 'order' => 'down'))}">
+                            <img src="/images/admin/ordering-down.png" />
+                        </a>
+                        <a n:if="!$isFirst" href="{$control->getParent()->link($ordering, array('id' => $row['id'], 'order' => 'up'))}">
+                            <img src="/images/admin/ordering-up.png" />
+                        </a>
+                    </td>
+                {/foreach}
+                <td n:if="count($menu) > 0">
+                    {foreach $menu as $item}
+                        {$item->render($row)}
+                    {/foreach}
+                </td>
+            </tr>
+            {? $parent = $row->related($related)}
+            {if !is_null($order)}
+                {? $parent->order($order . ' ' . $orderDir);}
+            {/if}
+            {? $level++}
+            {include #inside, model => $parent, level => $level}
+            {? $level--}
+        {/foreach}
+    {/block}
+</table>

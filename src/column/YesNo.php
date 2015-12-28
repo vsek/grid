@@ -15,7 +15,7 @@ class YesNo extends Column{
      */
     public function output(\Nette\Database\Table\ActiveRow $query){
         $column = $this->column;
-        if($query->$column == 'yes'){
+        if($query->$column === 'yes' || $query->$column === 1){
             return 'Ano';
         }else{
             return 'Ne';

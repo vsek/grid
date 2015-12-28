@@ -39,6 +39,8 @@ class GridTree extends Grid{
         //upravim model
         if(!is_null($this->order)){
             $this->model->order($this->order . ' ' . $this->orderDir);
+        }elseif(!is_null($this->orderDefault)){
+            $this->model->order($this->orderDefault . ' ' . $this->orderDirDefault);
         }
 
         $template->columns = $this->columns;

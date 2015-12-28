@@ -42,11 +42,25 @@ class Grid extends \Nette\Application\UI\Control{
     public $order = null;
     
     /**
+     * Vychozi zpusob razeni, nastavi se prvnim setOrder - aby to nelezlo do URL
+     * @var string
+     * @persistent
+     */
+    protected $orderDefault = null;
+    
+    /**
      * Smer razeni
      * @var ASC|DESC
      * @persistent
      */
     public $orderDir = 'ASC';
+    
+    /**
+     * Vychozi smer razeni, nastavi se prvnim setOrderDir - aby to nelezlo do URL
+     * @var ASC|DESC
+     * @persistent
+     */
+    protected $orderDirDefault = 'ASC';
     
     /**
      *
@@ -169,7 +183,11 @@ class Grid extends \Nette\Application\UI\Control{
      * @param string $order
      */
     public function setOrder($order){
-        $this->order = $order;
+        if(is_null($this->orderDefault)){
+            $this->orderDefault = $order;
+        }else{
+            $this->order = $order;
+        }
     }
     
     /**
@@ -177,7 +195,11 @@ class Grid extends \Nette\Application\UI\Control{
      * @param string $orderDir
      */
     public function setOrderDir($orderDir){
-        $this->orderDir = $orderDir;
+        if(is_null($this->orderDirDefault)){
+            $this->orderDirDefault = $orderDir;
+        }else{
+            $this->orderDir = $orderDir;
+        }
     }
     
     /**
@@ -220,6 +242,8 @@ class Grid extends \Nette\Application\UI\Control{
         //upravim model
         if(!is_null($this->order)){
             $this->model->order($this->order . ' ' . $this->orderDir);
+        }elseif(!is_null($this->orderDefault)){
+            $this->model->order($this->orderDefault . ' ' . $this->orderDirDefault);
         }
         //strankovani
         $this->visualPaginator->getPaginator()->setItemsPerPage($this->itemsToPage);

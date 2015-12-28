@@ -60,7 +60,7 @@ class Grid extends \Nette\Application\UI\Control{
      * @var ASC|DESC
      * @persistent
      */
-    protected $orderDirDefault = 'ASC';
+    protected $orderDirDefault = null;
     
     /**
      *
@@ -243,7 +243,12 @@ class Grid extends \Nette\Application\UI\Control{
         if(!is_null($this->order)){
             $this->model->order($this->order . ' ' . $this->orderDir);
         }elseif(!is_null($this->orderDefault)){
-            $this->model->order($this->orderDefault . ' ' . $this->orderDirDefault);
+            if(is_null($this->orderDirDefault)){
+                $orderDir = 'ASC';
+            }else{
+                $orderDir = $this->orderDirDefault;
+            }
+            $this->model->order($this->orderDefault . ' ' . $orderDir);
         }
         //strankovani
         $this->visualPaginator->getPaginator()->setItemsPerPage($this->itemsToPage);

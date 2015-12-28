@@ -247,7 +247,7 @@ class Grid extends \Nette\Application\UI\Control{
         }
         //strankovani
         $this->visualPaginator->getPaginator()->setItemsPerPage($this->itemsToPage);
-        $this->visualPaginator->getPaginator()->setItemCount($this->model->count());
+        $this->visualPaginator->getPaginator()->setItemCount($this->model->count('*'));
         $this->model->limit($this->visualPaginator->getPaginator()->getLength(), $this->visualPaginator->getPaginator()->getOffset());
         $template->columns = $this->columns;
         $template->model = $this->model;

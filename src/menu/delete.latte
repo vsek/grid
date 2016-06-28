@@ -5,18 +5,18 @@
 </div>
 <script type="text/javascript">
   $(function() {
-    $('a.confirm-{!$action}-{!$row->$uniquete}').click(function(){
-        $( "#dialog-confirm-{!$action}-{!$row->$uniquete}" ).dialog('open');
+    $('a.confirm-{$action|noescape}-{$row->$uniquete|noescape}').click(function(){
+        $( "#dialog-confirm-{$action|noescape}-{$row->$uniquete|noescape}" ).dialog('open');
         return false;
     });
-    $( "#dialog-confirm-{!$action}-{!$row->$uniquete}" ).dialog({
+    $( "#dialog-confirm-{$action|noescape}-{$row->$uniquete|noescape}" ).dialog({
         autoOpen: false,
       resizable: false,
       modal: true,
       buttons: {
           {_'admin.grid.realyDelete'}: function() {
           $( this ).dialog( "close" );
-          window.location.href = $('a.confirm-{!$action}-{!$row->$uniquete}').attr('href');
+          window.location.href = $('a.confirm-{$action|noescape}-{$row->$uniquete|noescape}').attr('href');
         },
           {_'admin.grid.cancel'}: function() {
           $( this ).dialog( "close" );

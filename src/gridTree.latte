@@ -9,15 +9,15 @@
         {/foreach}
         <th n:if="count($menu) > 0"></th>
     </tr>
-    {? $level = 0}
+    {php $level = 0}
     {block #inside}
         {foreach $model as $row}
             <tr n:class="$iterator->isLast() ? last">
-                {? $isFirst = $iterator->isFirst()}
-                {? $isLast = $iterator->isLast()}
+                {php $isFirst = $iterator->isFirst()}
+                {php $isLast = $iterator->isLast()}
                 {foreach $columns as $column}
                     <td n:class="$iterator->isFirst() ? first">
-                        <span n:if="$iterator->isFirst()" style="padding-left: {? echo($level*10)}px"></span>
+                        <span n:if="$iterator->isFirst()" style="padding-left: {php echo($level*10)}px"></span>
                         {$column->output($row)}
                     </td>
                     <td n:if="$iterator->isFirst() && !is_null($ordering)" class="ordering">
@@ -35,13 +35,13 @@
                     {/foreach}
                 </td>
             </tr>
-            {? $parent = $row->related($related)}
+            {php $parent = $row->related($related)}
             {if !is_null($order)}
-                {? $parent->order($order . ' ' . $orderDir);}
+                {php $parent->order($order . ' ' . $orderDir);}
             {/if}
-            {? $level++}
+            {php $level++}
             {include #inside, model => $parent, level => $level}
-            {? $level--}
+            {php $level--}
         {/foreach}
     {/block}
 </table>

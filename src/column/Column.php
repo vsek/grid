@@ -26,6 +26,16 @@ class Column extends \Nette\Object{
      */
     private $ordering = true;
     
+    /**
+     *
+     * @var \App\Presenters\BasePresenter
+     */
+    protected $presenter;
+    
+    public function setPresenter(\App\Presenters\BasePresenter $presenter){
+        $this->presenter = $presenter;
+    }
+    
     public function __construct($column, $name) {
         $this->column = $column;
         $this->name = $name;

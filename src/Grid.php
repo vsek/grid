@@ -207,6 +207,7 @@ class Grid extends \Nette\Application\UI\Control{
      * @param \App\Grid\Column\Column $column
      */
     public function addColumn(Column\Column $column){
+        $column->setPresenter($this->getPresenter());
         $this->columns[] = $column;
     }
     

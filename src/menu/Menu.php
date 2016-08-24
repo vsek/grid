@@ -12,19 +12,19 @@ class Menu extends \Nette\Application\UI\Control{
      * Nazev odkazu
      * @var string
      */
-    private $name;
+    protected $name;
     
     /**
      * Akce do presenteru
      * @var string
      */
-    private $action;
+    protected $action;
     
     /**
      * Systemovy nazev komponenty, pouziva se pri duplikaci akci
      * @var type string
      */
-    private $systemName = null;
+    protected $systemName = null;
     
     /**
      * Vraci systemovy nazev komponenty, pouziva se pri duplikaci akci

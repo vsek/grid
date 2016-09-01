@@ -10,6 +10,12 @@ namespace App\Grid\Column;
 class HasOne extends Column{
     protected $table;
     
+    /**
+     * 
+     * @param string $column nazev sloupecku
+     * @param string $name popis slopecku
+     * @param string|array $table tabulka relace, pokud je pole prochazi se postupne
+     */
     public function __construct($column, $name, $table) {
         parent::__construct($column, $name);
         $this->table = $table;
@@ -24,10 +30,20 @@ class HasOne extends Column{
     public function output(\Nette\Database\Table\ActiveRow $query){
         $column = $this->column;
         $table = $this->table;
-        if($query->$table){
-            return $query->$table->$column;
+        if(!is_array($table)){
+            if($query->$table){
+                return $query->$table->$column;
+            }else{
+                return '';
+            }
         }else{
-            return '';
+            foreach($table as $tab){
+                $query = $query->$tab;
+                if(!$query){
+                    return '';
+                }
+            }
+            return $query->$column;
         }
     }
 }

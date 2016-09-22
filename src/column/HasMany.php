@@ -9,9 +9,9 @@ namespace App\Grid\Column;
  */
 class HasMany extends Column{
     
-    private $related;
-    private $separator;
-    private $table;
+    protected $related;
+    protected $separator;
+    protected $table;
     
     public function __construct($column, $name, $related, $table = null, $separator = ', ') {
         parent::__construct($column, $name);

@@ -38,7 +38,7 @@ class HasOne extends Column{
             }
         }else{
             foreach($table as $tab){
-                $query = $query->$tab;
+                $query = $query->ref($tab);
                 if(!$query){
                     return '';
                 }

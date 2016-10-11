@@ -20,6 +20,7 @@ class Delete extends Menu{
         $template->uniquete = $this->getParent()->getUniquete();
         $template->name = $this->getName();
         $template->row = $row;
+        $template->title = $this->title;
         
         $template->render();
     }

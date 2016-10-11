@@ -27,6 +27,20 @@ class Menu extends \Nette\Application\UI\Control{
     protected $systemName = null;
     
     /**
+     * Attribut title u odkazu
+     * @var string
+     */
+    protected $title = null;
+    
+    /**
+     * Nastavi attribut title u odkazu
+     * @param string $title
+     */
+    public function setTitle($title){
+        $this->title = $title;
+    }
+    
+    /**
      * Vraci systemovy nazev komponenty, pouziva se pri duplikaci akci
      * @return string
      */
@@ -86,6 +100,7 @@ class Menu extends \Nette\Application\UI\Control{
         $template->uniquete = $this->getParent()->getUniquete();
         $template->name = $this->getName();
         $template->row = $row;
+        $template->title = $this->title;
         
         $template->render();
     }

@@ -35,9 +35,11 @@ class Menu extends \Nette\Application\UI\Control{
     /**
      * Nastavi attribut title u odkazu
      * @param string $title
+     * @return Menu
      */
     public function setTitle($title){
         $this->title = $title;
+        return $this;
     }
     
     /**

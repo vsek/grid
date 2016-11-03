@@ -22,6 +22,8 @@ class Delete extends Menu{
         $template->row = $row;
         $template->title = $this->title;
         
-        $template->render();
+        if($this->getPresenter()->getUser()->isAllowed($this->getPresenter()->getNameSimple(), $this->getAction())){
+            $template->render();
+        }
     }
 }

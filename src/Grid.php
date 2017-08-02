@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Grid;
+use App\VisualPaginator;
+use Nette\ComponentModel\IContainer;
+use Nette\Database\Table\Selection;
 
 /**
  * Description of Grid
@@ -64,7 +67,7 @@ class Grid extends \Nette\Application\UI\Control{
     
     /**
      *
-     * @var \App\VisualPaginator
+     * @var VisualPaginator
      */
     protected $visualPaginator = null;
     
@@ -98,20 +101,27 @@ class Grid extends \Nette\Application\UI\Control{
      */
     protected $ordering = null;
     
-    public function __construct(\Nette\ComponentModel\IContainer $parent = NULL, $name = NULL) {
+    public function __construct(IContainer $parent = NULL, $name = NULL) {
         parent::__construct($parent, $name);
 
         $this->templateFile = 'grid.latte';
         $this->templateDir = __DIR__;
         
-        $this->visualPaginator = new \App\VisualPaginator($this, 'vp');
+        $this->visualPaginator = new VisualPaginator($this, 'vp');
+    }
+
+    /**
+     * @return VisualPaginator
+     */
+    public function getVisualPaginator(){
+        return $this->visualPaginator;
     }
     
     /**
      * Zmeni visual paginator
-     * @param \App\VisualPaginator $visualPaginator
+     * @param VisualPaginator $visualPaginator
      */
-    public function setVisualPaginator(\App\VisualPaginator $visualPaginator){
+    public function setVisualPaginator(VisualPaginator $visualPaginator){
         $this->visualPaginator = $visualPaginator;
     }
     
@@ -215,7 +225,7 @@ class Grid extends \Nette\Application\UI\Control{
      * Nastavi model
      * @param Nette\Database\Table\Selection
      */
-    public function setModel(\Nette\Database\Table\Selection $model){
+    public function setModel(Selection $model){
         $this->model = $model;
     }
     

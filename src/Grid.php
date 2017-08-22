@@ -274,6 +274,13 @@ class Grid extends \Nette\Application\UI\Control{
         $template->order = $this->order;
         $template->orderDir = $this->orderDir;
         $template->ordering = $this->ordering;
+
+        try{
+            $this->getComponent('formFilter');
+            $template->showFormFilter = true;
+        }catch(InvalidArgumentException $e){
+            $template->showFormFilter = false;
+        }
         
         $template->render();
     }

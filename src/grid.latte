@@ -1,3 +1,6 @@
+{if $showFormFilter}
+    {control formFilter}
+{/if}
 {if $visualPaginator->getPaginator()->getItemCount() == 0}
     <p>{$emptyText}</p>
 {else}

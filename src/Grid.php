@@ -4,6 +4,7 @@ namespace App\Grid;
 use App\VisualPaginator;
 use Nette\ComponentModel\IContainer;
 use Nette\Database\Table\Selection;
+use Nette\InvalidArgumentException;
 
 /**
  * Description of Grid

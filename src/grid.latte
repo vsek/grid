@@ -19,7 +19,7 @@
             {php $isFirst = $iterator->isFirst()}
             {php $isLast = $iterator->isLast()}
             {foreach $columns as $column}
-                <td n:class="$iterator->isFirst() ? first">{$column->output($row)}</td>
+                <td n:class="$iterator->isFirst() ? first, !is_null($column->getClass()) ? $column->getClass()">{$column->output($row)}</td>
                 <td n:if="$iterator->isFirst() && !is_null($ordering)" class="ordering">
                     <a n:if="!$isLast" href="{$control->getParent()->link($ordering, array('id' => $row['id'], 'order' => 'down'))}">
                         <img src="/images/admin/ordering-down.png" />

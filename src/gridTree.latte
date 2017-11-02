@@ -16,7 +16,7 @@
                 {php $isFirst = $iterator->isFirst()}
                 {php $isLast = $iterator->isLast()}
                 {foreach $columns as $column}
-                    <td n:class="$iterator->isFirst() ? first">
+                    <td n:class="$iterator->isFirst() ? first, !is_null($column->getClass()) ? $column->getClass()">
                         <span n:if="$iterator->isFirst()" style="padding-left: {php echo($level*10)}px"></span>
                         {$column->output($row)}
                     </td>

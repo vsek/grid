@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Grid\Column;
+use App\Presenters\BasePresenter;
+use Nette\Database\Table\ActiveRow;
+use Nette\Object;
 
 /**
  * Zakladni sloupecek
  *
  * @author Vsek
  */
-class Column extends \Nette\Object{
+class Column extends Object{
     /**
      * Nazev sloupecku
      * @var string
@@ -28,11 +31,35 @@ class Column extends \Nette\Object{
     
     /**
      *
-     * @var \App\Presenters\BasePresenter
+     * @var BasePresenter
      */
     protected $presenter;
+
+    /**
+     * Class co se zobrazuje v sabloně
+     * @var null|string
+     */
+    protected $class = null;
+
+    /**
+     * Vrátí třídu co se zobrazuje v šabloně
+     * @return null|string
+     */
+    public function getClass(){
+        return $this->class;
+    }
+
+    /**
+     * Nastaví třídu co se zobrazuje v šabloně
+     * @param string $class
+     * @return self
+     */
+    public function setClass(string $class){
+        $this->class = $class;
+        return $this;
+    }
     
-    public function setPresenter(\App\Presenters\BasePresenter $presenter){
+    public function setPresenter(BasePresenter $presenter){
         $this->presenter = $presenter;
     }
     
@@ -91,10 +118,10 @@ class Column extends \Nette\Object{
     
     /**
      * Vrati hodnotu z tabulky
-     * @param Nette\Database\Table\ActiveRow $query
+     * @param ActiveRow $query
      * @return string
      */
-    public function output(\Nette\Database\Table\ActiveRow $query){
+    public function output(ActiveRow $query){
         $column = $this->column;
         return $query->$column;
     }

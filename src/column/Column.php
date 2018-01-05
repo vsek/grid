@@ -42,6 +42,28 @@ class Column extends Object{
     protected $class = null;
 
     /**
+     * Titulek buňky
+     * @var null|string
+     */
+    protected $title = null;
+
+    /**
+     * @return null|string
+     */
+    public function getTitle(){
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle(string $title){
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
      * Vrátí třídu co se zobrazuje v šabloně
      * @return null|string
      */

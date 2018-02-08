@@ -41,6 +41,12 @@ class Menu extends \Nette\Application\UI\Control{
         $this->title = $title;
         return $this;
     }
+
+    /**
+     * Sloupecek ktery se vraci, prebiji unikatni
+     * @var null|string
+     */
+    protected $column = null;
     
     /**
      * Vraci systemovy nazev komponenty, pouziva se pri duplikaci akci
@@ -73,6 +79,7 @@ class Menu extends \Nette\Application\UI\Control{
      */
     public function setColumn($column){
         $this->column = $column;
+        return $this;
     }
     
     /**
@@ -99,7 +106,11 @@ class Menu extends \Nette\Application\UI\Control{
         $template->setFile(__DIR__ . '/menu.latte');
         
         $template->action = $this->getAction();
-        $template->uniquete = $this->getParent()->getUniquete();
+        if(!is_null($this->column)){
+            $template->uniquete = $this->column;
+        }else{
+            $template->uniquete = $this->getParent()->getUniquete();
+        }
         $template->name = $this->getName();
         $template->row = $row;
         $template->title = $this->title;

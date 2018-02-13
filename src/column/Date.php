@@ -9,7 +9,7 @@ namespace App\Grid\Column;
  */
 class Date extends Column{
     
-    private $format;
+    protected $format;
     
     public function __construct($column, $name, $format = 'j.n.Y') {
         parent::__construct($column, $name);

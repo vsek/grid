@@ -4,13 +4,15 @@ namespace App\Grid\Column;
 use App\Presenters\BasePresenter;
 use Nette\Database\Table\ActiveRow;
 use Nette\Object;
+use Nette\SmartObject;
 
 /**
  * Zakladni sloupecek
  *
  * @author Vsek
  */
-class Column extends Object{
+class Column{
+    use SmartObject;
     /**
      * Nazev sloupecku
      * @var string

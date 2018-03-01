@@ -50,6 +50,28 @@ class Column{
     protected $title = null;
 
     /**
+     * Originalni nazev, pokud se nenastavi jinak, je stejny jako column
+     * @var null|string
+     */
+    protected $originalName;
+
+    /**
+     * @return null|string
+     */
+    public function getOriginalName(){
+        return $this->originalName;
+    }
+
+    /**
+     * @param $originalName
+     * @return $this
+     */
+    public function setOriginalName($originalName){
+        $this->originalName = $originalName;
+        return $this;
+    }
+
+    /**
      * @return null|string
      */
     public function getTitle(){
@@ -90,6 +112,7 @@ class Column{
     public function __construct($column, $name) {
         $this->column = $column;
         $this->name = $name;
+        $this->originalName = $column;
     }
     
     /**

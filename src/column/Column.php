@@ -104,9 +104,14 @@ class Column{
         $this->class = $class;
         return $this;
     }
-    
+
+    /**
+     * @param BasePresenter $presenter
+     * @return $this
+     */
     public function setPresenter(BasePresenter $presenter){
         $this->presenter = $presenter;
+        return $this;
     }
     
     public function __construct($column, $name) {

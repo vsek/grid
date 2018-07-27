@@ -1,1 +1,5 @@
-<a href="{plink $action, $row->$uniquete}"{if !is_null($title)} title="{$title}"{/if}>{$name}</a>
+{if empty($linkParameters)}
+    <a href="{plink $action, $row->$uniquete}"{if !is_null($title)} title="{$title}"{/if}>{$name}</a>
+{else}
+    <a href="{$presenter->link($action, ['id' => $row->$uniquete] + $linkParameters)}"{if !is_null($title)} title="{$title}"{/if}>{$name}</a>
+{/if}

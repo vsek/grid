@@ -9,6 +9,12 @@ namespace App\Grid\Menu;
  */
 class Menu extends \Nette\Application\UI\Control{
     /**
+     * Parametry odkazu
+     * @var array
+     */
+    protected $linkParameters = [];
+
+    /**
      * Nazev odkazu
      * @var string
      */
@@ -31,6 +37,15 @@ class Menu extends \Nette\Application\UI\Control{
      * @var string
      */
     protected $title = null;
+
+    /**
+     * @param array $linkParameters
+     * @return $this
+     */
+    public function setLinkParameters(array $linkParameters){
+        $this->linkParameters = $linkParameters;
+        return $this;
+    }
     
     /**
      * Nastavi attribut title u odkazu
@@ -106,6 +121,7 @@ class Menu extends \Nette\Application\UI\Control{
         $template->setFile(__DIR__ . '/menu.latte');
         
         $template->action = $this->getAction();
+        $template->linkParameters = $this->linkParameters;
         if(!is_null($this->column)){
             $template->uniquete = $this->column;
         }else{

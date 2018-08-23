@@ -103,7 +103,8 @@ class Grid extends \Nette\Application\UI\Control{
     protected $ordering = null;
     
     public function __construct(IContainer $parent = NULL, $name = NULL) {
-        parent::__construct($parent, $name);
+        parent::__construct();
+        $parent->addComponent($this, $name);
 
         $this->templateFile = 'grid.latte';
         $this->templateDir = __DIR__;

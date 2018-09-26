@@ -81,6 +81,7 @@ class Menu extends \Nette\Application\UI\Control{
      */
     public function setSystemName($name){
         $this->systemName = $name;
+        return $this;
     }
     
     public function __construct($action, $name) {

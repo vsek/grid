@@ -35,12 +35,19 @@ class GridTree extends Grid{
         $template = $this->getTemplate();
         $template->setFile($this->templateDir . '/' . $this->templateFile);
         $template->setTranslator($this->getPresenter()->translator);
-        
+
         //upravim model
         if(!is_null($this->order)){
             $this->model->order($this->order . ' ' . $this->orderDir);
+            $template->order = $this->order;
+            $template->orderDir = $this->orderDir;
         }elseif(!is_null($this->orderDefault)){
             $this->model->order($this->orderDefault . ' ' . $this->orderDirDefault);
+            $template->order = $this->orderDefault;
+            $template->orderDir = $this->orderDirDefault;
+        }else{
+            $template->order = null;
+            $template->orderDir = null;
         }
 
         $template->columns = $this->columns;
@@ -49,8 +56,6 @@ class GridTree extends Grid{
         $template->uniquete = $this->uniquete;
         $template->emptyText = is_null($this->emptyText) ? $this->getPresenter()->translator->translate('admin.grid.noItemFound') : $this->emptyText;
         $template->visualPaginator = $this->visualPaginator;
-        $template->order = $this->order;
-        $template->orderDir = $this->orderDir;
         $template->ordering = $this->ordering;
         $template->related = $this->related;
         
